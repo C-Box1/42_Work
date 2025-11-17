@@ -12,39 +12,33 @@
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst)
-		return (NULL);
-	while (lst -> next)
-		lst = lst -> next;
-	return (lst);
+	if (f == NULL)
+		return ;
+	while (lst != NULL)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }
 // #include "libft.h"
 // #include <stdio.h>
 // #include <stdlib.h>
+// #include <string.h>
 
-// void	print_last_node(t_list *lst)
+// void	print_content(void *content)
 // {
-// 	t_list *last = ft_lstlast(lst);
-// 	if (last)
-// 		printf("Last node content: %s\n", (char *)last->content);
-// 	else
-// 		printf("List is empty.\n");
+// 	printf("Visited: %s\n", (char *)content);
 // }
 
 // int	main(void)
 // {
-// 	print_last_node(NULL);
-// 	t_list *node1 = ft_lstnew("first");
-// 	print_last_node(node1);
-// 	t_list *node2 = ft_lstnew("second");
-// 	t_list *node3 = ft_lstnew("third");
-// 	node1->next = node2;
-// 	node2->next = node3;
-// 	print_last_node(node1);
-// 	free(node1);
-// 	free(node2);
-// 	free(node3);
+// 	t_list *list = NULL;
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("first")));
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("second")));
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("third")));
+// 	ft_lstiter(list, print_content);
+// 	ft_lstclear(&list, free);
 // 	return (0);
 // }

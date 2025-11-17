@@ -28,3 +28,41 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		last = last->next;
 	last->next = new;
 }
+// #include "libft.h"
+// #include <stdio.h>
+// #include <stdlib.h>
+
+// void	print_list(t_list *lst)
+// {
+// 	while (lst)
+// 	{
+// 		printf("%s -> ", (char *)lst->content);
+// 		lst = lst->next;
+// 	}
+// 	printf("NULL\n");
+// }
+
+// int	main(void)
+// {
+// 	t_list *list = NULL;
+
+// 	t_list *n1 = ft_lstnew("first");
+// 	ft_lstadd_back(&list, n1);
+// 	print_list(list);
+
+// 	t_list *n2 = ft_lstnew("second");
+// 	ft_lstadd_back(&list, n2);
+// 	print_list(list);
+
+// 	t_list *n3 = ft_lstnew("third");
+// 	ft_lstadd_back(&list, n3);
+// 	print_list(list);
+// 	t_list *tmp;
+// 	while (list)
+// 	{
+// 		tmp = list->next;
+// 		free(list);
+// 		list = tmp;
+// 	}
+// 	return (0);
+// }

@@ -30,3 +30,37 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	}
 	*lst = NULL;
 }
+// #include "libft.h"
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+
+// void	del_content(void *content)
+// {
+// 	free(content);
+// }
+
+// void	print_list(t_list *lst)
+// {
+// 	while (lst)
+// 	{
+// 		printf("%s -> ", (char *)lst->content);
+// 		lst = lst->next;
+// 	}
+// 	printf("NULL\n");
+// }
+
+// int	main(void)
+// {
+// 	t_list *list = NULL;
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("first")));
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("second")));
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("third")));
+// 	printf("Before clear:\n");
+// 	print_list(list);
+// 	ft_lstclear(&list, del_content);
+// 	printf("After clear:\n");
+// 	print_list(list);
+
+// 	return (0);
+// }

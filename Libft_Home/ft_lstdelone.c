@@ -20,3 +20,23 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*))
 		del(lst ->content);
 	free(lst);
 }
+// #include "libft.h"
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+
+// void	del_content(void *content)
+// {
+// 	free(content);
+// }
+
+// int	main(void)
+// {
+// 	char *str = strdup("to be deleted");
+// 	t_list *node = ft_lstnew(str);
+// 	printf("Before deletion: %s\n", (char *)node->content);
+// 	ft_lstdelone(node, del_content);
+// 	node = NULL;
+// 	printf("Node deleted: %s\n", (char *)node->content);
+// 	return (0);
+// }
