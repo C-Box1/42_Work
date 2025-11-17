@@ -34,3 +34,16 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int main()
+// {
+//     char big[20] = "Hello World";
+//     char little[10] = "World";
+//     big[11] = '\0';
+//     little[9] = '\0';
+//     printf("%s\n", ft_strnstr(big, little, 11));
+//     printf("%s", big);
+//     return (0);
+// }

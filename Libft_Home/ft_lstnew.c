@@ -12,36 +12,36 @@
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+t_list *ft_lstnew(void *content)
 {
-	size_t		total_size;
-	char		*dup;
+    t_list *new_node;
 
-	total_size = ft_strlen(s) + 1;
-	dup = malloc(total_size);
-	if (dup == NULL)
-		return (NULL);
-	ft_memcpy(dup, s, total_size);
-	return (dup);
+    new_node = (t_list *)malloc(sizeof(t_list));
+    if (new_node == NULL)
+        return (NULL);
+    new_node->content = content;
+    new_node->next = NULL;
+    return (new_node);
 }
 // #include <stdio.h>
-// #include <string.h>
+// #include "libft.h"
 
-// int main()
+// int main(void)
 // {
-//     char str1[20] = "Hello World";
-//     char str2[10] = "Test";
-//     char str3[10] = " ";
-//     str1[19] = '\0';
-//     str2[9] = '\0';
-//     char *dup1 = ft_strdup(str1);
-//     char *dup2 = ft_strdup(str2);
-//     char *dup3 = ft_strdup(str3);
-//     printf("%s\n", dup1);
-//     printf("%s\n", dup2);
-// 	printf("%s", dup3);
-//     free(dup1);
-//     free(dup2);
-// 	free(dup3);
-//     return (0);
+//     char *text = "Hello, Charbel!";
+//     t_list *node = ft_lstnew(text);
+
+//     if (node)
+//     {
+//         printf("Node content: %s\n", (char *)node->content);
+//         printf("Next pointer: %p\n", (void *)node->next);
+//     }
+//     else
+//     {
+//         printf("Node creation failed.\n");
+//     }
+
+//     free(node);
+
+//     return 0;
 // }

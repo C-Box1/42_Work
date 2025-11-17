@@ -27,5 +27,18 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (ptr == NULL)
 		return (NULL);
 	ft_memset(ptr, 0, total_size);
-	return ((void *)(ptr));
+	return (ptr);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int main()
+// {
+//     int *arr1 = (int *)ft_calloc(5, sizeof(int));
+//     int *arr2 = (int *)ft_calloc(3, sizeof(int));
+//     printf("%d %d %d %d %d\n", arr1[0], arr1[1], arr1[2], arr1[3], arr1[4]);
+//     printf("%d %d %d", arr2[0], arr2[1], arr2[2]);
+//     free(arr1);
+//     free(arr2);
+//     return (0);
+// }

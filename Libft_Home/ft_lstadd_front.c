@@ -12,36 +12,39 @@
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t		total_size;
-	char		*dup;
-
-	total_size = ft_strlen(s) + 1;
-	dup = malloc(total_size);
-	if (dup == NULL)
-		return (NULL);
-	ft_memcpy(dup, s, total_size);
-	return (dup);
+	if (lst == NULL || new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }
-// #include <stdio.h>
-// #include <string.h>
 
-// int main()
+// #include <stdio.h>
+// #include "libft.h"
+
+// // Helper function to print the list contents
+// void print_list(t_list *head)
 // {
-//     char str1[20] = "Hello World";
-//     char str2[10] = "Test";
-//     char str3[10] = " ";
-//     str1[19] = '\0';
-//     str2[9] = '\0';
-//     char *dup1 = ft_strdup(str1);
-//     char *dup2 = ft_strdup(str2);
-//     char *dup3 = ft_strdup(str3);
-//     printf("%s\n", dup1);
-//     printf("%s\n", dup2);
-// 	printf("%s", dup3);
-//     free(dup1);
-//     free(dup2);
-// 	free(dup3);
-//     return (0);
+//     while (head)
+//     {
+//         printf("%s -> ", (char *)head->content);
+//         head = head->next;
+//     }
+//     printf("NULL\n");
+// }
+
+// int main(void)
+// {
+//     t_list *node1 = ft_lstnew("World");
+//     t_list *node2 = ft_lstnew("Beautiful");
+//     t_list *node3 = ft_lstnew("Hello");
+
+// 	t_list *head = NULL;
+//     ft_lstadd_front(&head, node1);
+//     ft_lstadd_front(&head, node2);
+//     ft_lstadd_front(&head, node3);
+//     print_list(head);
+
+//     return 0;
 // }

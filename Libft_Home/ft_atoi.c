@@ -34,3 +34,16 @@ int	ft_atoi(const char *str)
 	}
 	return (nb * sign);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int main()
+// {
+//     char str1[20] = "   -42abc";
+//     char str2[10] = "123";
+//     str1[19] = '\0';
+//     str2[9] = '\0';
+//     printf("%d\n", ft_atoi(str1));
+//     printf("%d", ft_atoi(str2));
+//     return (0);
+// }

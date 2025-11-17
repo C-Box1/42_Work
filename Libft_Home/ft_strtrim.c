@@ -39,3 +39,36 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trim_str[trim_len] = '\0';
 	return (trim_str);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int main()
+// {
+//		char s1[30] = "   Hello World   ";
+//		char s2[20] = "xxHelloxx";
+//		char s3[10] = "abc";
+//		char s4[5] = "";
+//		s1[29] = '\0';
+//		s2[19] = '\0';
+//		s3[9] = '\0';
+//		s4[4] = '\0';
+
+//		char *trim1 = ft_strtrim(s1, " ");
+//		char *trim2 = ft_strtrim(s2, "x");
+//		char *trim3 = ft_strtrim(s3, "abc");
+//		char *trim4 = ft_strtrim(s4, " ");
+//		char *trim5 = ft_strtrim(s1, "");
+
+//		printf("%s\n", trim1);
+//		printf("%s\n", trim2);
+//		printf("%s\n", trim3);
+//		printf("%s\n", trim4);
+//		printf("%s", trim5);
+
+//		free(trim1);
+//		free(trim2);
+//		free(trim3);
+//		free(trim4);
+//		free(trim5);
+//		return (0);
+// }

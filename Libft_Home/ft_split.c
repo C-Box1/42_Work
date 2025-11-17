@@ -24,9 +24,9 @@ char	**ft_split(char const *s, char c)
 	int		len;
 	int		word_count;
 
-	word_count = count_words(s, c);
 	if (s == NULL)
 		return (NULL);
+	word_count = count_words(s, c);
 	substr_array = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (substr_array == NULL)
 		return (NULL);
@@ -105,3 +105,53 @@ static char	**free_all(char **substr, int i)
 	free(substr);
 	return (NULL);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int main()
+// {
+//     char s1[30] = "Hello World";
+//     char s2[40] = "   Hello   World  ";
+//     char s3[20] = "abc,,def";
+//     char s4[5] = "";
+//     char s5[30] = "OneDelimiterOnly";
+//     s1[29] = '\0';
+//     s2[39] = '\0';
+//     s3[19] = '\0';
+//     s4[4] = '\0';
+//     s5[29] = '\0';
+
+//     char **split1 = ft_split(s1, ' ');
+//     char **split2 = ft_split(s2, ' ');
+//     char **split3 = ft_split(s3, ',');
+//     char **split4 = ft_split(s4, ',');
+// 	char **split5 = ft_split(s5, ',');
+
+//     for (int i = 0; split1[i]; i++)
+//         printf("%s\n", split1[i]);
+//     for (int i = 0; split2[i]; i++)
+//         printf("%s\n", split2[i]);
+//     for (int i = 0; split3[i]; i++)
+//         printf("%s\n", split3[i]);
+//     for (int i = 0; split4[i]; i++)
+//         printf("%s\n", split4[i]);
+//     for (int i = 0; split5[i]; i++)
+//         printf("%s", split5[i]);
+
+//     for (int i = 0; split1[i]; i++) 
+// 		free(split1[i]);
+// 	free(split1);
+//     for (int i = 0; split2[i]; i++) 
+// 		free(split2[i]);
+// 	free(split2);
+//     for (int i = 0; split3[i]; i++) 
+// 		free(split3[i]);
+// 	free(split3);
+//     for (int i = 0; split4[i]; i++) 
+// 		free(split4[i]);
+// 	free(split4);
+//     for (int i = 0; split5[i]; i++) 
+// 		free(split5[i]);
+// 	free(split5);
+//     return (0);
+// }

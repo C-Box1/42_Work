@@ -4,7 +4,7 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft
 OBJ = $(SRC:.c=.o)
 
 BONUS_SRC = 
-BONUS_OBJ = $(BONUS_SRC:.c,.o)
+BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
