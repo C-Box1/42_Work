@@ -20,7 +20,7 @@ char	*ft_itoa(int n)
 	char	*num_st;
 	long	nb;
 
-	if(n == -2147483648)
+	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	nb = n;
 	len = count_digits(nb);
