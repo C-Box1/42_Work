@@ -10,30 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdarg.h>
 
-char	*ft_strchr(const char *s, int c)
+int	ft_printf(const char *, ...)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if ((unsigned char) s[i] == (unsigned char)c)
-			return ((char *)(&s[i]));
-		i++;
-	}
-	if (c == 0)
-		return ((char *)(&s[i]));
-	return (NULL);
+	
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int main() {
-//     const char *str = "banana";
-//     printf("1. 'a' found at: %td\n", ft_strchr(str, 'a') - str);
-//     printf("2. 'z' found at: %p\n", (void *)ft_strchr(str, 'z'));
-//     printf("3. '\\0' found at: %td\n", ft_strchr(str, '\0') - str);
-//     return 0;
-// }
