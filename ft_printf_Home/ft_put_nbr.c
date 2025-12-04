@@ -10,51 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *start, ...)
+int ft_put_nbr(int n)
 {
-	va_list		list;
-	const char	*index;
+    char	*nb;
+    int		count;
 
-	va_start(list, start);
-	index = start;
-	while (*index != '\0')
-	{
-		if (*index == '%')
-		{
-			index++;
-			switch (*index)
-			{
-				case 'c':
-					ft_put_char(va_arg(list, int));
-					break;
-				case 's':
-					ft_put_string(va_arg(list, char *));
-					break;
-				case 'p':
-
-				case 'd':
-				case 'i':
-					ft_put_nbr(va_arg(list, int));
-					break;
-				case 'u':
-					ft_put_unb(va_arg(list, unsigned int));
-					break;
-				case 'x':
-
-				case 'X':
-
-				case '%':
-
-			}
-			index++;
-		}
-		else
-		{
-			ft_putchar_fd(*index, 1);
-			index++;
-		}
-	}
-	va_end(list);
+	*nb = ft_itoa(n);
+	count = ft_put_string(nb);
+	free(nb);
+    return (count);
 }

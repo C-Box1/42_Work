@@ -10,51 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_printf(const char *start, ...)
-{
-	va_list		list;
-	const char	*index;
+# include <stdarg.h>
+# include "libft.h"
 
-	va_start(list, start);
-	index = start;
-	while (*index != '\0')
-	{
-		if (*index == '%')
-		{
-			index++;
-			switch (*index)
-			{
-				case 'c':
-					ft_put_char(va_arg(list, int));
-					break;
-				case 's':
-					ft_put_string(va_arg(list, char *));
-					break;
-				case 'p':
+int	ft_printf(const char *, ...);
+int	ft_put_char(int c);
+int	ft_put_string(char *s);
+int	ft_put_nbr(int n);
+int	ft_put_unb(unsigned int n);
 
-				case 'd':
-				case 'i':
-					ft_put_nbr(va_arg(list, int));
-					break;
-				case 'u':
-					ft_put_unb(va_arg(list, unsigned int));
-					break;
-				case 'x':
-
-				case 'X':
-
-				case '%':
-
-			}
-			index++;
-		}
-		else
-		{
-			ft_putchar_fd(*index, 1);
-			index++;
-		}
-	}
-	va_end(list);
-}
+#endif

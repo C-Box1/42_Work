@@ -12,49 +12,42 @@
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *start, ...)
+static int	count_digits(unsigned int n);
+
+int	ft_put_unb(unsigned int n)
 {
-	va_list		list;
-	const char	*index;
+	int				len;
+	char			*num_st;
+	unsigned int	nb;
+	int				count;
 
-	va_start(list, start);
-	index = start;
-	while (*index != '\0')
+	nb = n;
+	len = count_digits(nb);
+	num_st = malloc(sizeof(char) * (len + 1));
+	if (num_st == NULL)
+		return (0);
+	num_st[len] = '\0';
+	while (len > 0)
 	{
-		if (*index == '%')
-		{
-			index++;
-			switch (*index)
-			{
-				case 'c':
-					ft_put_char(va_arg(list, int));
-					break;
-				case 's':
-					ft_put_string(va_arg(list, char *));
-					break;
-				case 'p':
-
-				case 'd':
-				case 'i':
-					ft_put_nbr(va_arg(list, int));
-					break;
-				case 'u':
-					ft_put_unb(va_arg(list, unsigned int));
-					break;
-				case 'x':
-
-				case 'X':
-
-				case '%':
-
-			}
-			index++;
-		}
-		else
-		{
-			ft_putchar_fd(*index, 1);
-			index++;
-		}
+		num_st[--len] = (nb % 10) + '0';
+		nb /= 10;
 	}
-	va_end(list);
+	count = ft_put_string(num_st);
+	free(num_st);
+	return (count);
+}
+
+static int	count_digits(unsigned int n)
+{
+	int	counter;
+
+	counter = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		counter++;
+		n /= 10;
+	}
+	return (counter);
 }
