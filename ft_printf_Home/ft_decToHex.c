@@ -10,17 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include "libft.h"
+int	ft_decToHex (unsigned int nb, char c)
+{
+	int		count;
+	char	*hexDigits;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+	if (c == 'x')
+		hexDigits = "0123456789abcdef";
+	else if (c == 'X')
+		hexDigits = "0123456789ABCDEF";
+	count = 0;
+	if (nb >= 16)
+		count += ft_decToHex(nb / 16, c);
+	ft_put_char(hexDigits[nb % 16]);
+	count++;
+	return (count);
+}

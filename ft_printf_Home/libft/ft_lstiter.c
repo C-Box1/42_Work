@@ -10,17 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (f == NULL)
+		return ;
+	while (lst != NULL)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
+}
+// #include "libft.h"
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+// void	print_content(void *content)
+// {
+// 	printf("Visited: %s\n", (char *)content);
+// }
 
-#endif
+// int	main(void)
+// {
+// 	t_list *list = NULL;
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("first")));
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("second")));
+// 	ft_lstadd_back(&list, ft_lstnew(strdup("third")));
+// 	ft_lstiter(list, print_content);
+// 	ft_lstclear(&list, free);
+// 	return (0);
+// }

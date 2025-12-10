@@ -10,17 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+int	ft_tolower(int c)
+{
+	if (c > 64 && c < 91)
+	{
+		c = c + 32;
+		return (c);
+	}
+	else
+		return (c);
+}
+// #include <stdio.h>
 
-# include <stdarg.h>
-# include "libft.h"
-
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+// int main() {
+//     printf("a -> %c\n", ft_tolower('a'));
+//     printf("Z -> %c\n", ft_tolower('Z'));
+//     printf("9 -> %c\n", ft_tolower('9'));
+//     return 0;
+// }

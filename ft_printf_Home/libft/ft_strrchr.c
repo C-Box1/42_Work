@@ -10,17 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+	i = ft_strlen(s);
+	while (i >= 0)
+	{
+		if ((unsigned char)s[i] == (unsigned char)c)
+			return ((char *)(&s[i]));
+		i--;
+	}
+	return (NULL);
+}
+// #include <stdio.h>
+// #include <string.h>
 
-#endif
+// int main() {
+//     const char *str = "banana";
+//     printf(" Last 'a' found at: %td\n", ft_strrchr(str, 'a') - str); 
+//     printf(" 'z' found at: %p\n", (void *)ft_strrchr(str, 'z'));
+//     printf("'\\0' found at: %td\n", ft_strrchr(str, '\0') - str);
+//     return 0;
+// }

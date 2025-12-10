@@ -10,17 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <unistd.h>
 
-# include <stdarg.h>
-# include "libft.h"
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	const unsigned char	*str;
+	unsigned char		cn;
+	size_t				i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+	str = s;
+	cn = (unsigned char)c;
+	i = 0;
+	while (i < n)
+	{
+		if (str[i] == cn)
+			return ((void *)(&str[i]));
+		i++;
+	}
+	return (NULL);
+}
+// #include <stdio.h>
+// #include <string.h>
 
-#endif
+// int main() {
+//     const char *data = "X.Y.Z.\0A.B.C.";
+//     size_t len = 12;
+//     printf("'A' %td\n", (char *)ft_memchr(data, 'A', len) - data);
+//     printf("'X' %td\n", (char *)ft_memchr(data, 'X', len) - data);
+// 	printf("'Z' %td\n", (char *)ft_memchr(data, 'Z', 5) - data);
+
+//     return 0;
+// }

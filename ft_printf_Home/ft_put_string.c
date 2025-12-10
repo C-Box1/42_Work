@@ -10,18 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int ft_put_string(char *s)
+int	ft_put_string(char *s)
 {
-    char	*null_str;
-    int		len;
+	char	*null_str;
+	int		len;
 
-	*null_str = "(null)";
-    if (s == NULL)
-        s = null_str;
-    len = ft_strlen(s);
-
-    write(1, s, len);
-    return (len);
+	null_str = "(null)";
+	if (s == NULL)
+		s = null_str;
+	len = ft_strlen(s);
+	write (1, s, len);
+	return (len);
 }

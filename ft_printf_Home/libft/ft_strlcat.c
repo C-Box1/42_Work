@@ -10,17 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t	dest_len;
+	size_t	src_len;
+	size_t	i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+	dest_len = ft_strlen(dest);
+	src_len = ft_strlen(src);
+	i = 0;
+	if (size <= dest_len)
+		return (size + src_len);
+	while (src[i] != '\0' && dest_len + i < size - 1)
+	{
+		dest[dest_len + i] = src[i];
+		i++;
+	}
+	dest[dest_len + i] = '\0';
+	return (dest_len + src_len);
+}
+// #include <stdio.h>
+// #include <string.h>
+// int main()
+// {
+// 	char	c[20] = "Hello World";
+// 	char	d[10] = "bvbf";
+// 	c[19] = '\0';
+// 	d[9] = '\0';
+// 	printf("%zu\n", ft_strlcat(d, c, sizeof(d)));
+// 	printf("%lu\n", strlen(d));
+// 	printf("%s\n%s", c, d);
+// 	return(0);
+// }

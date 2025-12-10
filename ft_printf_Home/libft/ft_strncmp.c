@@ -10,53 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_printf(const char *start, ...)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	va_list		list;
-	const char	*index;
+	const unsigned char	*s1_str;
+	const unsigned char	*s2_str;
+	size_t				i;
 
-	va_start(list, start);
-	index = start;
-	while (*index != '\0')
+	s1_str = (const unsigned char *)s1;
+	s2_str = (const unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		if (*index == '%')
-		{
-			index++;
-			switch (*index)
-			{
-				case 'c':
-					ft_put_char(va_arg(list, int));
-					break ;
-				case 's':
-					ft_put_string(va_arg(list, char *));
-					break ;
-				case 'p':
-
-				case 'd':
-				case 'i':
-					ft_put_nbr(va_arg(list, int));
-					break ;
-				case 'u':
-					ft_put_unb(va_arg(list, unsigned int));
-					break ;
-				case 'x':
-				case 'X':
-					ft_decToHex(va_arg(list, unsigned int), *index);
-					break ;
-				case '%':
-					ft_put_char('%');
-					break ;
-
-			}
-			index++;
-		}
-		else
-		{
-			ft_putchar_fd(*index, 1);
-			index++;
-		}
+		if (s1_str[i] != s2_str[i])
+			return ((int)(s1_str[i] - s2_str[i]));
+		i++;
 	}
-	va_end(list);
+	return (0);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int main() 
+// {
+//     const char *str1 = "apple pie";
+//     const char *str2 = "apple sauce";
+//     const char *str3 = "app";
+//     int result1 = ft_strncmp(str1, str2, 5); 
+//     printf("1. strncmp(%s, %s, 5): %d \n", str1, str2, result1);
+//     int result2 = ft_strncmp(str1, str2, 7); 
+//     printf("2. strncmp(%s, %s, 7): %d \n", str1, str2, result2);
+//     int result3 = ft_strncmp(str1, str3, 4); 
+//     printf("3. strncmp(%s, %s, 4): %d \n", str1, str3, result3);
+//     return 0;
+// }

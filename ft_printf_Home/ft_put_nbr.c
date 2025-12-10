@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int ft_put_nbr(int n)
+int	ft_put_nbr(int n)
 {
-    char	*nb;
-    int		count;
+	char	*nb;
+	int		count;
 
 	*nb = ft_itoa(n);
 	count = ft_put_string(nb);
 	free(nb);
-    return (count);
+	return (count);
 }

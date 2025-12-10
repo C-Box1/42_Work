@@ -10,17 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include <stdarg.h>
-# include "libft.h"
-
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+int	ft_isprint(int c)
+{
+	if (c > 31 && c < 127)
+		return (1);
+	else
+		return (0);
+}
+// #include <stdio.h>
+// int main()
+// {
+// 	printf("%i", ft_isprint('	'));
+// }

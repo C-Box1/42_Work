@@ -10,17 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
+{
+	if (!lst)
+		return ;
+	if (del)
+		del(lst ->content);
+	free(lst);
+}
+// #include "libft.h"
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+// void	del_content(void *content)
+// {
+// 	free(content);
+// }
 
-#endif
+// int	main(void)
+// {
+// 	char *str = strdup("to be deleted");
+// 	t_list *node = ft_lstnew(str);
+// 	printf("Before deletion: %s\n", (char *)node->content);
+// 	ft_lstdelone(node, del_content);
+// 	node = NULL;
+// 	printf("Node deleted: %s\n", (char *)node->content);
+// 	return (0);
+// }

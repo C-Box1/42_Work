@@ -10,17 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst == NULL || new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+// #include <stdio.h>
+// #include "libft.h"
 
-#endif
+// // Helper function to print the list contents
+// void print_list(t_list *head)
+// {
+//     while (head)
+//     {
+//         printf("%s -> ", (char *)head->content);
+//         head = head->next;
+//     }
+//     printf("NULL\n");
+// }
+
+// int main(void)
+// {
+//     t_list *node1 = ft_lstnew("World");
+//     t_list *node2 = ft_lstnew("Beautiful");
+//     t_list *node3 = ft_lstnew("Hello");
+
+// 	t_list *head = NULL;
+//     ft_lstadd_front(&head, node1);
+//     ft_lstadd_front(&head, node2);
+//     ft_lstadd_front(&head, node3);
+//     print_list(head);
+
+//     return 0;
+// }

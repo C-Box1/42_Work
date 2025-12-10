@@ -10,17 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	nb;
 
-# include <stdarg.h>
-# include "libft.h"
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = nb * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nb * sign);
+}
+// #include <stdio.h>
+// #include <string.h>
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+// int main()
+// {
+//     char str1[20] = "   -42abc";
+//     char str2[10] = "123";
+//     str1[19] = '\0';
+//     str2[9] = '\0';
+//     printf("%d\n", ft_atoi(str1));
+//     printf("%d", ft_atoi(str2));
+//     return (0);
+// }

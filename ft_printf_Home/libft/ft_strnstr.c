@@ -10,17 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	lil_len;
+	size_t	i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+	lil_len = ft_strlen(little);
+	i = 0;
+	if (lil_len == 0)
+		return ((char *)big);
+	while (big[i] && i < len)
+	{
+		if (i + lil_len > len)
+			break ;
+		if (big[i] == little[0])
+		{
+			if (ft_strncmp(&big[i], little, lil_len) == 0)
+				return ((char *)&big[i]);
+		}
+		i++;
+	}
+	return (NULL);
+}
+// #include <stdio.h>
+// #include <string.h>
 
-#endif
+// int main()
+// {
+//     char big[20] = "Hello World";
+//     char little[10] = "World";
+//     big[11] = '\0';
+//     little[9] = '\0';
+//     printf("%s\n", ft_strnstr(big, little, 11));
+//     printf("%s", big);
+//     return (0);
+// }

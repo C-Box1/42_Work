@@ -10,17 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <unistd.h>
 
-# include <stdarg.h>
-# include "libft.h"
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const unsigned char	*s1_str;
+	const unsigned char	*s2_str;
+	size_t				i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+	s1_str = s1;
+	s2_str = s2;
+	i = 0;
+	while (i < n)
+	{
+		if (s1_str[i] != s2_str[i])
+			return ((int)(s1_str[i] - s2_str[i]));
+		i++;
+	}
+	return (0);
+}
+// #include <stdio.h>
+// #include <string.h>
 
-#endif
+// int main() {
+//     const char *data1 = "A B C \0 X Y Z";
+//     const char *data2 = "A B C \0 K L M";
+//     int result1 = ft_memcmp(data1, data2, 10);
+//     printf("%d\n", result1);
+//     int result2 = ft_memcmp(data1, data2, 7);
+//     printf("%d\n", result2);
+//     int result3 = ft_memcmp(data1, data2, 1);
+//     printf("%d\n", result3);
+//     return 0;
+// }

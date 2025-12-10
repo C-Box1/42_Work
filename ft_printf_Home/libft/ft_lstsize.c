@@ -10,17 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+int	ft_lstsize(t_list *lst)
+{
+	int	count;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+	count = 0;
+	while (lst != NULL)
+	{
+		count++;
+		lst = lst->next;
+	}
+	return (count);
+}
+// #include <stdio.h>
+// #include "libft.h"
 
-#endif
+// int main(void)
+// {
+//     t_list *node1 = ft_lstnew("Node 1");
+//     t_list *node2 = ft_lstnew("Node 2");
+//     t_list *node3 = ft_lstnew("Node 3");
+
+//     t_list *head = NULL;
+//     ft_lstadd_front(&head, node1);
+//     ft_lstadd_front(&head, node2);
+//     ft_lstadd_front(&head, node3);
+
+//     int count = ft_lstsize(head);
+//     printf("List size: %d\n", count);
+//     return 0;
+// }

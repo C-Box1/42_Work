@@ -10,17 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <unistd.h>
 
-# include <stdarg.h>
-# include "libft.h"
+void	*ft_bzero(void *ptr, size_t n)
+{
+	unsigned char	*p;
+	int				i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+	i = 0;
+	p = (unsigned char *)ptr;
+	while (n > 0)
+	{
+		p[i] = '\0';
+		i++;
+		n--;
+	}
+	return (ptr);
+}
+// #include <stdio.h>
+// int main()
+// {
+// 	char	c[12] = "Hello World";
+// 	c [11] = '\0';
+// 	printf("%s", (char *)ft_bzero(c, 5));
+// }

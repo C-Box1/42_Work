@@ -10,17 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new_node;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
+}
+// #include <stdio.h>
+// #include "libft.h"
 
-#endif
+// int main(void)
+// {
+//     char *text = "Hello, Charbel!";
+//     t_list *node = ft_lstnew(text);
+
+//     if (node)
+//     {
+//         printf("Node content: %s\n", (char *)node->content);
+//         printf("Next pointer: %p\n", (void *)node->next);
+//     }
+//     else
+//     {
+//         printf("Node creation failed.\n");
+//     }
+
+//     free(node);
+
+//     return 0;
+// }

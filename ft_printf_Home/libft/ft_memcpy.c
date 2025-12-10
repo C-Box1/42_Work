@@ -10,17 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <unistd.h>
 
-# include <stdarg.h>
-# include "libft.h"
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char	*s;
+	unsigned char	*d;
+	size_t			i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dest);
+}
+// #include <stdio.h>
+// int main()
+// {
+// 	char	c[12] = "Hello World";
+// 	char	d[10] = "";
+// 	c[11] = '\0';
+// 	d[9] = '\0';
+// 	printf("%s", (char *)ft_memcpy(d, c, 12));
+// }

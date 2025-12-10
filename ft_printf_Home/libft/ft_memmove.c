@@ -10,17 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <unistd.h>
 
-# include <stdarg.h>
-# include "libft.h"
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	const unsigned char	*s;
+	unsigned char		*d;
+	size_t				i;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+	s = (const unsigned char *)src;
+	d = (unsigned char *)dest;
+	i = 0;
+	if (d > s)
+	{
+		while (n--)
+			d[n] = s[n];
+	}
+	else
+	{
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (dest);
+}
+// #include <stdio.h>
+// #include <string.h>
+// int main()
+// {
+// 	char	c[20] = "Hello World";
+// 	char	d[10] = "";
+// 	c[11] = '\0';
+// 	d[9] = '\0';
+// 	printf("%s\n", (char *)ft_memmove(c, c + 2, 12));
+// 	printf("%s", c);
+// 	return(0);
+// }

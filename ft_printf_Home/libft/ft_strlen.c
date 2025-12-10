@@ -10,17 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <string.h>
 
-# include <stdarg.h>
-# include "libft.h"
+size_t	ft_strlen(const char *str)
+{
+	size_t	counter;
 
-int	ft_printf(const char *start, ...);
-int	ft_put_char(int c);
-int	ft_put_string(char *s);
-int	ft_put_nbr(int n);
-int	ft_put_unb(unsigned int n);
-int	ft_decToHex (unsigned int nb, char c);
-
-#endif
+	counter = 0;
+	while (str[counter])
+	{
+		counter++;
+	}
+	return (counter);
+}
+// #include <stdio.h>
+// int main()
+// {
+// 	char	c[10] = "	";
+// 	printf("%zu", ft_strlen(c));
+// }
