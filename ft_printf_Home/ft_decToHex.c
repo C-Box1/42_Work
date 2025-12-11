@@ -17,6 +17,7 @@ int	ft_decToHex (unsigned int nb, char c)
 	int		count;
 	char	*hexDigits;
 
+	hexDigits = NULL;
 	if (c == 'x')
 		hexDigits = "0123456789abcdef";
 	else if (c == 'X')
