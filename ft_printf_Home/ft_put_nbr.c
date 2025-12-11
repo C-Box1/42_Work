@@ -17,7 +17,9 @@ int	ft_put_nbr(int n)
 	char	*nb;
 	int		count;
 
-	*nb = ft_itoa(n);
+	nb = ft_itoa(n);
+	if (!nb)
+		return (0);
 	count = ft_put_string(nb);
 	free(nb);
 	return (count);

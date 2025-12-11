@@ -14,13 +14,15 @@
 
 int	ft_put_string(char *s)
 {
-	char	*null_str;
 	int		len;
 
-	null_str = "(null)";
 	if (s == NULL)
-		s = null_str;
-	len = ft_strlen(s);
+		s = "(null)";
+	len = 0;
+	while (s[len])
+	{
+		len++;
+	}
 	write (1, s, len);
 	return (len);
 }
