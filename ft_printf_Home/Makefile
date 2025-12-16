@@ -8,11 +8,10 @@ SRC = ft_printf.c \
       ft_decToHex.c \
       ft_print_ptr.c
 
-LIBFT_DIR = ./libft
-LIBFT_SRC = $(LIBFT_DIR)/ft_itoa.c
-
 OBJ = $(SRC:.c=.o)
-LIBFT_OBJ = $(LIBFT_SRC:.c=.o)
+
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
@@ -21,17 +20,21 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT_OBJ)
-	$(AR) $(NAME) $(OBJ) $(LIBFT_OBJ)
+$(NAME): $(OBJ)
+	make -C $(LIBFT_DIR)
+	cp $(LIBFT) .
+	$(AR) $(NAME) $(OBJ) libft.a
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(LIBFT_OBJ)
+	$(RM) $(OBJ)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) libft.a
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
