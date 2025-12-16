@@ -22,7 +22,7 @@ int		ft_put_char(int c);
 int		ft_put_string(char *s);
 int		ft_put_nbr(int n);
 int		ft_put_unb(unsigned int n);
-int		ft_decToHex (unsigned int nb, char c);
+int		ft_dec_to_hex(unsigned int nb, char c);
 int		ft_print_ptr(unsigned long long nb);
 char	*ft_itoa(int n);
 
