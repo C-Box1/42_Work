@@ -1,13 +1,18 @@
 NAME = libftprintf.a
 
-SRC = ft_printf.c\
-	ft_put_char.c\
-	ft_put_string.c\
-	ft_put_nbr.c\
-	ft_put_unb.c\
-	ft_decToHex.c\
-	ft_print_ptr.c
+SRC = ft_printf.c \
+      ft_put_char.c \
+      ft_put_string.c \
+      ft_put_nbr.c \
+      ft_put_unb.c \
+      ft_decToHex.c \
+      ft_print_ptr.c
+
+LIBFT_DIR = ./libft
+LIBFT_SRC = $(LIBFT_DIR)/ft_itoa.c
+
 OBJ = $(SRC:.c=.o)
+LIBFT_OBJ = $(LIBFT_SRC:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
@@ -16,18 +21,18 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(LIBFT_OBJ)
+	$(AR) $(NAME) $(OBJ) $(LIBFT_OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(BONUS_OBJ)
+	$(RM) $(OBJ) $(LIBFT_OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
