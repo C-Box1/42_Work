@@ -57,27 +57,27 @@ static int check_index(char spec, va_list list)
 	return (0);
 }
 
-// #include <stdio.h>
-// #include "ft_printf.h"
+#include <stdio.h>
+#include "ft_printf.h"
 
-// int main(void)
-// {
-//     int a, b;
-//     char *str = "world";
-//     int num = 42;
-//     void *ptr = &num;
+int main(void)
+{
+    int a, b;
+    char *str = "world";
+    int num = 42;
+    void *ptr = &num;
 
-//     a = printf("Hello %s %d %u %x %X %p %%\n", str, num, num, num, num, ptr);
-//     b = ft_printf("Hello %s %d %u %x %X %p %%\n", str, num, num, num, num, ptr);
+    a = printf("Hello %s %d %u %x %X %p %%\n", str, num, num, num, num, ptr);
+    b = ft_printf("Hello %s %d %u %x %X %p %%\n", str, num, num, num, num, ptr);
 
-//     printf("printf returned: %d\n", a);
-//     printf("ft_printf returned: %d\n", b);
+    printf("printf returned: %d\n", a);
+    printf("ft_printf returned: %d\n", b);
 
-//     // Test NULL pointer
-//     a = printf("NULL pointer: %p\n", NULL);
-//     b = ft_printf("NULL pointer: %p\n", NULL);
-//     printf("printf returned: %d\n", a);
-//     printf("ft_printf returned: %d\n", b);
+    // Test NULL pointer
+    a = printf("NULL pointer: %p\n", NULL);
+    b = ft_printf("NULL pointer: %p\n", NULL);
+    printf("printf returned: %d\n", a);
+    printf("ft_printf returned: %d\n", b);
 
-//     return 0;
-// }
+    return 0;
+}
