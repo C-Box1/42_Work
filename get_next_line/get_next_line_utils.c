@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -23,11 +23,12 @@ size_t	ft_strlen(const char *str)
 		counter++;
 	return (counter);
 }
+
 char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 
-	if ( s == NULL)
+	if (s == NULL)
 		return (NULL);
 	i = 0;
 	while (s[i])
@@ -59,36 +60,7 @@ char	*ft_strdup(const char *s)
 	dup[len] = '\0';
 	return (dup);
 }
-char *ft_strjoin(char *s1, char *s2)
-{
-	size_t	len1;
-	size_t	len2;
-	size_t	i;
-	char	*big_s;
 
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	big_s = malloc(len1 + len2 + 1);
-	if (!big_s)
-		return (NULL);
-	i = 0;
-	while (i < len1 + len2)
-	{
-		if (i < len1)
-			big_s[i] = s1[i];
-		else
-			big_s[i] = s2[i - len1];
-		i++;
-	}
-	big_s[len1 + len2] = '\0';
-	return (big_s);
-}
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
@@ -114,18 +86,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub[best_len] = '\0';
 	return (sub);
 }
-static char	*check_null(char const *s2);
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*big_s;
 	size_t	len1;
 	size_t	len2;
+	size_t	i;
 
-	if (s1 == NULL)
-		return (check_null(s2));
-	if (s2 == NULL)
-		return (ft_strdup(s1));
+	if (!s1 || !s2)
+		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	if (SIZE_MAX - len1 < len2 + 1)
@@ -133,22 +103,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	big_s = malloc(len1 + len2 + 1);
 	if (big_s == NULL)
 		return (NULL);
-	ft_memcpy(big_s, s1, len1);
-	ft_memcpy(big_s + len1, s2, len2);
-	big_s[len1 + len2] = '\0';
+	i = -1;
+	while (s1[++i])
+		big_s[i] = s1[i];
+	len1 = i;
+	i = -1;
+	while (s2[++i])
+		big_s[len1 + i] = s2[i];
+	big_s[len1 + i] = '\0';
 	return (big_s);
-}
-
-static char	*check_null(char const *s2)
-{
-	char	*big_s;
-
-	if (s2 != NULL)
-		return (ft_strdup(s2));
-	else
-	{
-		big_s = malloc(1);
-		*big_s = '\0';
-		return (big_s);
-	}
 }
