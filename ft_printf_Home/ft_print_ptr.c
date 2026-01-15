@@ -17,9 +17,9 @@ static int	ft_put_hex(unsigned long long nb, char *hexDigits);
 int	ft_print_ptr(unsigned long long nb)
 {
 	int		count;
-	char	*hexDigits;
+	char	*hex_digits;
 
-	hexDigits = "0123456789abcdef";
+	hex_digits = "0123456789abcdef";
 	if (nb == 0)
 	{
 		ft_put_string("(nil)");
@@ -27,9 +27,10 @@ int	ft_print_ptr(unsigned long long nb)
 	}
 	ft_put_string("0x");
 	count = 2;
-	count += ft_put_hex(nb, hexDigits);
+	count += ft_put_hex(nb, hex_digits);
 	return (count);
 }
+
 static int	ft_put_hex(unsigned long long nb, char *hexDigits)
 {
 	int	count;

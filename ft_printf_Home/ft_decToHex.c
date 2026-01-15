@@ -12,20 +12,20 @@
 
 #include "ft_printf.h"
 
-int	ft_decToHex (unsigned int nb, char c)
+int	ft_dec_to_hex(unsigned int nb, char c)
 {
 	int		count;
-	char	*hexDigits;
+	char	*hex_digits;
 
-	hexDigits = NULL;
+	hex_digits = NULL;
 	if (c == 'x')
-		hexDigits = "0123456789abcdef";
+		hex_digits = "0123456789abcdef";
 	else if (c == 'X')
-		hexDigits = "0123456789ABCDEF";
+		hex_digits = "0123456789ABCDEF";
 	count = 0;
 	if (nb >= 16)
 		count += ft_decToHex(nb / 16, c);
-	ft_put_char(hexDigits[nb % 16]);
+	ft_put_char(hex_digits[nb % 16]);
 	count++;
 	return (count);
 }

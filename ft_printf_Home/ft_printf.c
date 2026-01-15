@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int check_index(char spec, va_list list);
+static int	check_index(char spec, va_list list);
 
 int	ft_printf(const char *start, ...)
 {
@@ -38,21 +38,21 @@ int	ft_printf(const char *start, ...)
 	return (count);
 }
 
-static int check_index(char spec, va_list list)
+static int	check_index(char spec, va_list list)
 {
 	if (spec == 'c')
 		return (ft_put_char(va_arg(list, int)));
 	if (spec == 's')
 		return (ft_put_string(va_arg(list, char *)));
-	if(spec == 'p')
+	if (spec == 'p')
 		return (ft_print_ptr((unsigned long long)va_arg(list, void *)));
-	if(spec == 'd' || spec == 'i')
+	if (spec == 'd' || spec == 'i')
 		return (ft_put_nbr(va_arg(list, int)));
-	if(spec == 'u')
+	if (spec == 'u')
 		return (ft_put_unb(va_arg(list, unsigned int)));
-	if(spec == 'x' || spec == 'X')
+	if (spec == 'x' || spec == 'X')
 		return (ft_decToHex(va_arg(list, unsigned int), spec));
-	if(spec == '%')
+	if (spec == '%')
 		return (ft_put_char('%'));
 	return (0);
 }
