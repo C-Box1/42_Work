@@ -24,24 +24,6 @@ size_t	ft_strlen(const char *str)
 	return (counter);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		if ((unsigned char) s[i] == (unsigned char)c)
-			return ((char *)(&s[i]));
-		i++;
-	}
-	if (c == 0)
-		return ((char *)(&s[i]));
-	return (NULL);
-}
-
 char	*ft_strdup(const char *s)
 {
 	size_t		len;
@@ -87,6 +69,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
+static char	*check_null(char const *s2);
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*big_s;
@@ -94,8 +78,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len2;
 	size_t	i;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (s2 == NULL)
+		return (ft_strdup(s1));
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	if (SIZE_MAX - len1 < len2 + 1)
@@ -103,13 +87,29 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	big_s = malloc(len1 + len2 + 1);
 	if (big_s == NULL)
 		return (NULL);
-	i = -1;
-	while (s1[++i])
-		big_s[i] = s1[i];
-	len1 = i;
-	i = -1;
-	while (s2[++i])
-		big_s[len1 + i] = s2[i];
-	big_s[len1 + i] = '\0';
+	i = 0;
+	while (i < len1 + len2)
+	{
+		if (i < len1)
+			big_s[i] = s1[i];
+		else
+			big_s[i] = s2[i - len1];
+		i++;
+	}
+	big_s[len1 + len2] = '\0';
 	return (big_s);
+}
+
+static char	*check_null(char const *s2)
+{
+	char	*big_s;
+
+	if (s2 != NULL)
+		return (ft_strdup(s2));
+	else
+	{
+		big_s = malloc(1);
+		*big_s = '\0';
+		return (big_s);
+	}
 }

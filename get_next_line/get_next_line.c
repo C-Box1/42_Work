@@ -13,13 +13,15 @@
 #include "get_next_line.h"
 
 char	*ft_strchr(const char *s, int c);
+char	*extract_line(char **leftover);
 
 char *get_next_line(int fd)
 {
 	static char *leftover;
 	char		*buffer;
 	char		*line;
-	size_t		bytes;
+	char		*tmp;
+	ssize_t		bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -36,6 +38,53 @@ char *get_next_line(int fd)
 			return (NULL);
 		}
 		buffer[bytes] = '\0';
-		leftover = ft_strjoin(leftover, buffer);
+		tmp = ft_strjoin(leftover, buffer);
+		free(leftover);
+		leftover = tmp;
 	}
+	free(buffer);
+	line = extract_line(&leftover);
+	return (line);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		if ((unsigned char) s[i] == (unsigned char)c)
+			return ((char *)(&s[i]));
+		i++;
+	}
+	if (c == 0)
+		return ((char *)(&s[i]));
+	return (NULL);
+}
+
+char	*extract_line(char **leftover)
+{
+	char	*line;
+	char	*tmp;
+	size_t	len;
+
+	if (*leftover == NULL || **leftover == '\0')
+		return (NULL);
+	len = 0;
+	while ((*leftover)[len] && (*leftover)[len] != '\n')
+		len++;
+	if ((*leftover)[len] == '\n')
+		len++;
+	line = ft_substr(*leftover, 0, len);
+	if (!line)
+		return (NULL);
+	tmp = ft_strdup(*leftover + len);
+	if (!tmp)
+		return (line);
+	free(*leftover);
+	*leftover = tmp;
+	return (line);
 }
