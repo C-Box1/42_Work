@@ -38,7 +38,10 @@ char	*ft_strdup(const char *s)
 		return (NULL);
 	i = 0;
 	while (i < len)
-		dup[i] = s[i++];
+	{
+		dup[i] = s[i];
+		i++;
+	}
 	dup[len] = '\0';
 	return (dup);
 }
@@ -64,12 +67,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	i = 0;
 	while (i < best_len)
-		sub[i] = s[start + i++];
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
 	sub[best_len] = '\0';
 	return (sub);
 }
 
-static char	*check_null(char const *s2);
+char	*check_null(char const *s2);
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -100,7 +106,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (big_s);
 }
 
-static char	*check_null(char const *s2)
+char	*check_null(char const *s2)
 {
 	char	*big_s;
 

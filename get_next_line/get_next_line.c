@@ -14,13 +14,13 @@
 
 char	*ft_strchr(const char *s, int c);
 char	*extract_line(char **leftover);
+char	*update_leftover(char	**leftover, char	**buffer);
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *leftover;
+	static char	*leftover;
 	char		*buffer;
 	char		*line;
-	char		*tmp;
 	ssize_t		bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -38,9 +38,7 @@ char *get_next_line(int fd)
 			return (NULL);
 		}
 		buffer[bytes] = '\0';
-		tmp = ft_strjoin(leftover, buffer);
-		free(leftover);
-		leftover = tmp;
+		leftover = update_leftover(&leftover, &buffer);
 	}
 	free(buffer);
 	line = extract_line(&leftover);
@@ -87,4 +85,14 @@ char	*extract_line(char **leftover)
 	free(*leftover);
 	*leftover = tmp;
 	return (line);
+}
+
+char	*update_leftover(char	**leftover, char	**buffer)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(*leftover, *buffer);
+	free(*leftover);
+	*leftover = tmp;
+	return (*leftover);
 }
