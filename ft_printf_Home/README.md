@@ -1,3 +1,5 @@
+##### *This project has been created as part of the 42 curriculum by `<csahyoun>`.*
+
 # ft_printf
 
 ## Description
@@ -111,7 +113,7 @@ Separate helper functions handle each conversion:
 
 AI was used for:
 
-* Explaining how the `printf` function ddealt with the specifiers mentioned before to match it as much as possible.
+* Explaining how the `printf` function dealt with the specifiers mentioned before to match it as much as possible.
 * Structuring and drafting this README template.
 * Clarifying documentation and explaining algorithmic choices in plain language.
 * Brainstorming how to present the project clearly.
