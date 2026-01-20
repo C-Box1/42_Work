@@ -92,6 +92,8 @@ char	*update_leftover(char	**leftover, char	**buffer)
 	char	*tmp;
 
 	tmp = ft_strjoin(*leftover, *buffer);
+	if (!tmp)
+		return (NULL);
 	free(*leftover);
 	*leftover = tmp;
 	return (*leftover);
