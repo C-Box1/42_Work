@@ -91,6 +91,10 @@ char	*update_leftover(char	**leftover, char	**buffer)
 {
 	char	*tmp;
 
+	if (!*leftover)
+		*leftover = ft_strdup("");
+	if (!*leftover)
+		return (NULL);
 	tmp = ft_strjoin(*leftover, *buffer);
 	if (!tmp)
 		return (NULL);

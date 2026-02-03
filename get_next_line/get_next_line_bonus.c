@@ -23,7 +23,7 @@ char	*get_next_line_bonus(int fd)
 	char		*line;
 	ssize_t		bytes;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
@@ -43,24 +43,6 @@ char	*get_next_line_bonus(int fd)
 	free(buffer);
 	line = extract_line(&leftover[fd]);
 	return (line);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		if ((unsigned char) s[i] == (unsigned char)c)
-			return ((char *)(&s[i]));
-		i++;
-	}
-	if (c == 0)
-		return ((char *)(&s[i]));
-	return (NULL);
 }
 
 char	*extract_line(char **leftover)
@@ -91,6 +73,10 @@ char	*update_leftover(char	**leftover, char	**buffer)
 {
 	char	*tmp;
 
+	if (!*leftover)
+		*leftover = ft_strdup("");
+	if (!*leftover)
+		return (NULL);
 	tmp = ft_strjoin(*leftover, *buffer);
 	if (!tmp)
 		return (*leftover);

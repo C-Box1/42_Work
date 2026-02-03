@@ -25,7 +25,6 @@ size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*check_null(char const *s2);
 char	*ft_strchr(const char *s, int c);
 char	*extract_line(char **leftover);
 char	*update_leftover(char	**leftover, char	**buffer);
