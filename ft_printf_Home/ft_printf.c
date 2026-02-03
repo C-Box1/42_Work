@@ -45,13 +45,13 @@ static int	check_index(char spec, va_list list)
 	if (spec == 's')
 		return (ft_put_string(va_arg(list, char *)));
 	if (spec == 'p')
-		return (ft_print_ptr((unsigned long long)va_arg(list, void *)));
+		return (ft_print_ptr((uintptr_t)va_arg(list, void *)));
 	if (spec == 'd' || spec == 'i')
 		return (ft_put_nbr(va_arg(list, int)));
 	if (spec == 'u')
 		return (ft_put_unb(va_arg(list, unsigned int)));
 	if (spec == 'x' || spec == 'X')
-		return (ft_decToHex(va_arg(list, unsigned int), spec));
+		return (ft_dec_to_hex(va_arg(list, unsigned int), spec));
 	if (spec == '%')
 		return (ft_put_char('%'));
 	return (0);

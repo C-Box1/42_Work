@@ -28,12 +28,3 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	char	c[12] = "Hello World";
-// 	char	d[10] = "";
-// 	c[11] = '\0';
-// 	d[9] = '\0';
-// 	printf("%s", (char *)ft_memcpy(d, c, 12));
-// }

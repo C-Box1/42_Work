@@ -58,27 +58,3 @@ static int	count_digits(long n)
 	}
 	return (counter);
 }
-// #include <stdio.h>
-// #include <limits.h>
-
-// int main()
-// {
-//     char *s1 = ft_itoa(0);
-//     char *s2 = ft_itoa(12345);
-//     char *s3 = ft_itoa(-12345);
-//     char *s4 = ft_itoa(INT_MAX);
-//     char *s5 = ft_itoa(INT_MIN);
-
-//     printf("%s\n", s1);
-//     printf("%s\n", s2);
-//     printf("%s\n", s3);
-//     printf("%s\n", s4);
-//     printf("%s\n", s5);
-
-//     free(s1);
-//     free(s2);
-//     free(s3);
-//     free(s4);
-//     free(s5);
-//     return (0);
-// }

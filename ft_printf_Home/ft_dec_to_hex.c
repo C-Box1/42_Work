@@ -24,7 +24,7 @@ int	ft_dec_to_hex(unsigned int nb, char c)
 		hex_digits = "0123456789ABCDEF";
 	count = 0;
 	if (nb >= 16)
-		count += ft_decToHex(nb / 16, c);
+		count += ft_dec_to_hex(nb / 16, c);
 	ft_put_char(hex_digits[nb % 16]);
 	count++;
 	return (count);
