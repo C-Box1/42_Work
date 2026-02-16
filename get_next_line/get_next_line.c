@@ -12,7 +12,6 @@
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c);
 char	*extract_line(char **leftover);
 char	*update_leftover(char	**leftover, char	**buffer);
 
@@ -43,24 +42,6 @@ char	*get_next_line(int fd)
 	free(buffer);
 	line = extract_line(&leftover);
 	return (line);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		if ((unsigned char) s[i] == (unsigned char)c)
-			return ((char *)(&s[i]));
-		i++;
-	}
-	if (c == 0)
-		return ((char *)(&s[i]));
-	return (NULL);
 }
 
 char	*extract_line(char **leftover)

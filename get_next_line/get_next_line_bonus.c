@@ -12,7 +12,6 @@
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strchr(const char *s, int c);
 char	*extract_line(char **leftover);
 char	*update_leftover(char	**leftover, char	**buffer);
 
