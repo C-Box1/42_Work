@@ -13,34 +13,50 @@
 #include "get_next_line.h"
 
 char	*extract_line(char **leftover);
-char	*update_leftover(char	**leftover, char	**buffer);
+char	*update_leftover(char **leftover, char **buffer);
 
-char	*get_next_line(int fd)
+static char	*read_and_store(int fd, char *leftover)
 {
-	static char	*leftover;
-	char		*buffer;
-	char		*line;
-	ssize_t		bytes;
+	char	*buffer;
+	ssize_t	bytes;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
 	bytes = 1;
-	while (!ft_strchr(leftover, '\n') && bytes > 0)
+	while ((!leftover || !ft_strchr(leftover, '\n')) && bytes > 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes < 0)
 		{
 			free(buffer);
+			free(leftover);
 			return (NULL);
 		}
 		buffer[bytes] = '\0';
-		leftover = update_leftover(&leftover, &buffer);
+		if (bytes > 0)
+			leftover = update_leftover(&leftover, &buffer);
 	}
 	free(buffer);
+	return (leftover);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*leftover;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	leftover = read_and_store(fd, leftover);
+	if (!leftover)
+		return (NULL);
 	line = extract_line(&leftover);
+	if (!line)
+	{
+		free(leftover);
+		leftover = NULL;
+	}
 	return (line);
 }
 
@@ -50,7 +66,7 @@ char	*extract_line(char **leftover)
 	char	*tmp;
 	size_t	len;
 
-	if (*leftover == NULL || **leftover == '\0')
+	if (!*leftover || !**leftover)
 		return (NULL);
 	len = 0;
 	while ((*leftover)[len] && (*leftover)[len] != '\n')
@@ -62,13 +78,16 @@ char	*extract_line(char **leftover)
 		return (NULL);
 	tmp = ft_strdup(*leftover + len);
 	if (!tmp)
-		return (line);
+	{
+		free(line);
+		return (NULL);
+	}
 	free(*leftover);
 	*leftover = tmp;
 	return (line);
 }
 
-char	*update_leftover(char	**leftover, char	**buffer)
+char	*update_leftover(char **leftover, char **buffer)
 {
 	char	*tmp;
 
@@ -78,7 +97,11 @@ char	*update_leftover(char	**leftover, char	**buffer)
 		return (NULL);
 	tmp = ft_strjoin(*leftover, *buffer);
 	if (!tmp)
+	{
+		free(*leftover);
+		*leftover = NULL;
 		return (NULL);
+	}
 	free(*leftover);
 	*leftover = tmp;
 	return (*leftover);

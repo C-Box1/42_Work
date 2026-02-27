@@ -24,7 +24,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 
-char	*get_next_line_bonus(int fd);
+char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
