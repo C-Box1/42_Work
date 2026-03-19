@@ -1,0 +1,52 @@
+Commands to use during the eval:
+
+//SUDO//
+sudo apt install <download name>
+
+sudo reboot (reboot vm)
+sudo -V (check sudo version)
+sudo adduser <username> (create a new user)
+sudo addgroup <group name> (create a new group)
+sudo adduser <username> <group name> (adds <username> to <group name>)
+
+sudo apt install openssh-server (installs SSH)
+
+sudo service <service name> status (to check the status of a service)
+sudo service <service name> restart (to restart a service to check for changes)
+
+//UFW//
+sudo ufw enable (to enable the firewall on system startup)
+sudo ufw allow <port> (allow a specific port to pass through the firewall)
+sudo ufw status (check if firewall active and allowed ports)
+sudo ufw status numbered(check index of each rule)
+sudo ufw delete <index> (delete rule)
+
+sudo crontab -u root -e(to set the monitoring.sh file to launch every 10 minutes)
+
+sudo ls </path/> (find if this path exists)
+
+//GETENT//
+getent group <group name> (get details of each group(ID, users))
+
+//CAT//
+cat /etc/group (prints all the groups on the vm with members)
+
+//NANO//
+sudo nano /etc/hostname (change hostname)
+
+nano /etc/ssh/sshd_config (adjusted some configurations(Port set to 4242 and permitrootlogin set to no))
+
+nano /etc/login.defs (set the strong pass policy(max days, min days, warn message))
+
+nano /etc/pam.d/common-password (setting the rest of the password restrictions)
+
+sudo nano /usr/local/bin/monitoring.sh (to check the script)
+
+//SSH//
+ssh csahyoun@127.0.0.1 -p 4241 (connect to the vm from the terminal)
+
+//SHOW PARTITIONS//
+lsblk
+
+//check if dependencies/packages installed properly//
+dpkg -l | grep <package name> (check for sudo) 

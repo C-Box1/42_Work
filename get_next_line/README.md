@@ -65,13 +65,13 @@ int main(void)
     printf("\n=== Testing get_next_line_bonus (two FDs) ===\n");
     while (1)
     {
-        line = get_next_line_bonus(fd1);
+        line = get_next_line(fd1);
         if (!line)
             break;
         printf("File1: %s", line);
         free(line);
 
-        line = get_next_line_bonus(fd2);
+        line = get_next_line(fd2);
         if (!line)
             break;
         printf("File2: %s", line);
