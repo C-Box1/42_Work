@@ -2,6 +2,21 @@
 
 void	ft_algorithm(double disorder, t_context *ctx)
 {
+	int size;
+	
+	size = get_stack_size(*(ctx->a));
+    if (size <= 1)
+        return;
+    if (size <= 3)
+    {
+        run_small_sort(ctx, size);
+        return;
+    }
+    if (size <= 5)
+    {
+        run_simple_algorithm(ctx);
+        return;
+    }
 	if (ctx->mode_flag == 0)
 	{
 		if (disorder < 0.2)

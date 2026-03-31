@@ -37,11 +37,6 @@ static void radix_sort(t_context *ctx)
 
 void	run_complex_algorithm(t_context *ctx)
 {
-	int	size;
-
-	size = get_stack_size(*(ctx->a));
-	if (size <= 5)
-		return ;
 	radix_sort(ctx);
 }
 

@@ -2,6 +2,7 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <stddef.h>
 
 typedef struct stack
 {
@@ -83,4 +84,5 @@ void	run_medium_algorithm(t_context* ctx);
 void	run_complex_algorithm(t_context* ctx);
 void	print_benchmarks(double disorder, int mode_flag, t_stats *stats);
 int		find_max_index(t_stack *b);
+int still_in_chunk(t_stack *stack, int min, int max);
 #endif

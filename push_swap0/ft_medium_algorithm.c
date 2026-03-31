@@ -1,23 +1,18 @@
 #include "push_swap.h"
 
-static void	push_chunk_to_b(t_context *ctx, int min, int max)
+static void push_chunk_to_b(t_context *ctx, int min, int max)
 {
-	int	size;
-	int	pushed;
-
-	size = get_stack_size(*(ctx->a));
-	pushed = 0;
-	while (pushed < (max - min + 1) && size > 0)
-	{
-		if ((*(ctx->a))->index >= min && (*(ctx->a))->index <= max)
-		{
-			ft_pb(ctx->b, ctx->a, ctx->stats);
-			pushed++;
-		}
-		else
-			ft_ra(ctx->a, ctx->stats);
-		size--;
-	}
+    while (still_in_chunk(*(ctx->a), min, max))
+    {
+        if ((*(ctx->a))->index >= min && (*(ctx->a))->index <= max)
+        {
+            ft_pb(ctx->b, ctx->a, ctx->stats);
+            if ((*(ctx->b))->index < (min + max) / 2)
+                ft_rb(ctx->b, ctx->stats);
+        }
+        else
+            ft_ra(ctx->a, ctx->stats);
+    }
 }
 
 static void rotate_b_to_top(t_context *ctx, int max_idx)
@@ -79,12 +74,20 @@ static void	chunk_sort(t_context *ctx, int total, int chunk_count)
 	push_sorted_back(ctx);
 }
 
-void	run_medium_algorithm(t_context *ctx)
+void run_medium_algorithm(t_context *ctx)
 {
-	int	size;
+	int size;
+	int chunk_count;
 
 	size = get_stack_size(*(ctx->a));
-	if (size <= 5)
-		return ;
-	chunk_sort(ctx, size, size / 3 + 1);
+	if (size <= 10)
+		chunk_count = 2;
+	else if (size <= 100)
+		chunk_count = 5;
+	else if (size <= 500)
+    	chunk_count = 11;
+	else
+    	chunk_count = size / 45;
+        
+	chunk_sort(ctx, size, chunk_count);
 }
