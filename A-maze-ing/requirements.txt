@@ -1,0 +1,136 @@
+Common guidelines:
+    3.10 version or above
+    flake8 compliant
+    try-except blocks for error handling
+    look into what they mean by context managers
+    all resources must be handled properly to prevent leaks
+    type hints must be included for everything and return types (check everything using mypy)
+    following the PEP 257 guidelines docstrings
+    Makefile:
+    install: project dependencies using pip, uv, pipx and any other packages of your choice
+    run: execute the main script
+    debug: run the built the main script in the built in python debugger
+    clean: remove temporary files and caches
+    lint: execute flake8 and mypy --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
+    lint-strict(optional): flake8 mypy --strict
+    Create test programs to verify project functionality(these not submitted) use unittest or pytest for edge cases
+    include a .gitignore to exclude python artifacts.
+    use virtual environments(venv or conda) for dependency isolation
+
+Mandatory part:
+    Create a maze generator takes a config file, generates a potentially perfect maze(meaning a single path between entrance and exit)
+    Provide a visual representation of said maze
+    PS: organize the code so that it can be reused later
+
+    usage: python3 a_maze_ing.py config.txt
+    a_maze_ing.py: main script that takes a config file and generates a maze
+    the program must handle all errors gracefully.(ex: invalid config, file not found, bad syntax, impossible maze params etc...). it must never crash unexpectedly. And it must provide a clear error message to the user.
+
+    config file format:(lines that start with # are comments and must be ignored)
+    Mandatory keys:
+        WIDTH: int(number of cells)
+        HEIGHT: int(number of cells)
+        ENTRY: (X,Y) coordinates of the entry point
+        EXIT: (X,Y) coordinates of the exit point
+        OUTPUT_FILE: output filename(ex: maze.txt)
+        PERFECT: Is the maze perfect? (TRUE/FALSE)
+    Additional keys are welcome in the case it helps/ are useful.
+    a default config file must be provided in the repo
+
+    Maze requirements:
+        randomly generated, but reproducibility via a seed is required.
+        each cell of the maze has between 0 and 4 walls. At each point(North, South, East, West) there is either a wall or a passage.
+        Valid maze:
+            entry and exit are different inside the maze bounds
+            structure ensures that there is full connectivity and no isolated cells(except the 42 pattern)
+            entry and exit are specific cells
+            external borders must have borders(walls)
+            generated maze each cell must have the same wall if any. ex: if a cell has a wall on the south of it the cell below it must have a wall on the north of it.
+        the maze cant have wide open areas max corridor width is 2 cells. (ex:2x3 or 3x2 is valid but 3x3 not valid)
+        the maze must have a visible "42" drawn by several fully closed cells.
+        if the perfect flag is set to true the maze must have a single path between the entry and the exit.
+        PS: in case the maze size is too small the 42 pattern can be omitted and print an error message in that case.
+
+    Output file format:
+        The maze must be written in the output file using one hexadecimal digit per cell. Where each digit encodes which walls are closed:
+        Bit : Direction
+        0 (LSB): North
+        1: East
+        2: South
+        3: West
+
+        A wall being closed sets the bit to 1, open means 0.
+        Example: 3(0011) means open walls to the south and west, (1010) means open walls to the north and south.
+
+        Cells are stored row by row, 1 row per line.
+
+        After an empty line, the following 3 elements are inserted in the output file(3 lines):
+            1. Entry coordinates
+            2. Exit coordinates
+            3. The shortest path from entry to exit using the 4 Letters N, E, S, W.
+        
+        all lines end with \n.
+
+        Moulinette tests the output file to check if the output is coherent with the requirements.
+
+    Visual Representation:
+        2 authorized ways to show the maze:
+            ASCII in the terminal.
+            graphical display using MiniLibX(MLX) library.
+
+        The visual must clearly show walls entry, exit, and the solution path.
+
+        The required user interaction:
+            Regenerate a new maze and display it.
+            Show/Hide the shortest path.
+            Change the maze wall colors.
+            Set a specific color to the 42 pattern(optional).
+            Extra user interactions are welcome.
+
+    Code reusability requirements:
+        The maze generation code must be in a unique class(e.g 'MazeGenerator') inside a single module that can be imported in a future project.
+
+        Short documentation describing:
+            Instantiate and use the generator with at least a basic example.
+            Pass custom parameters(ex: size, seed)
+            Access the generated structure and access at least a solution
+
+            The maze module grants access to the maze structure but is not necessarily the same format as the output file.
+
+            The entire module(code and documentation) must be available in a single file for a later installation by pip.
+
+            This package must be called mazegen-* and the file must be located at the root of the git repo.
+
+            Both the .tar, .gz and .whl extensions are allowed as generated by the standard build of a python package.
+
+            ex: mazegen-1.0.0-py3-none-any.whl
+
+            All the elements must be provided in the git repo to build the package(will be tested in a virtual env or equivalent, install and build your package again from your sources)
+
+            README.md file shouldnt be part of the reusable module ut it should contain a short documentation about the reusable module
+
+    README requirements:
+        first line in it: 
+            This project has been created as part of the 42 curriculum by <login1>[, <login2>[, <login3>[...]]]
+        Description: presents the project, goal and brief overview.
+
+        Instructions: contains relevant info abt compilation, installation and/or execution.
+
+        Resources: lists the resources used to work on this project as well as a description about how ai was used.
+
+        Additional requirements:
+            Complete structure of the config file
+            Maze generation algo
+            Reason of choosing a specific algo
+            What part of the code is reusable and how
+            Team and project management:
+                Roles of each member.
+                How the anticipated planning evolved over the period of the project.
+                What worked and what could improve.
+                Which specific tools used
+        If any advanced features are implemented describe them in the README.md file.
+
+Bonus part:
+    Add various bonuses to your project. ex:
+        Support multiple maze generation.
+        Add animation during the maze generation.
